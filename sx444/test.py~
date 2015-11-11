@@ -1,0 +1,16 @@
+from unittest import TestCase
+import investment_simulation 
+import numpy as np
+import unittest
+
+class test(TestCase):
+      '''this is to test the the program'''
+      def test_investment_simulation(self):
+	  # self.assertEqual(investment_simulation.simulate_one_day(10))
+        
+	  test_input = investment_simulation.simulation('[20, 200]', 20)
+	  self.assertEqual(test_input.repeat_and_present, 100)
+	  self.assertEqual(test_input.simulate_one_day(10), 10)
+
+if __name__ == '__main__':
+      unittest.main()

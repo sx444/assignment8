@@ -1,0 +1,72 @@
+'''this module includes a class of '''
+import matplotlib.pyplot as plt
+import numpy as np
+
+class investment_simulation(object):
+      '''this class is to simulate the investment and generate the results '''
+      def __inti__(self):
+      ''' this is a constructor that represents the positions'''
+         self.positions_str = positions_str[1:-1] # delete '[' and ']'
+         self.positions = positions_str.split() # splite each items
+
+         # delete the commas and change 'positions' to a list of integers
+         for i in range(len(self.positions)-1):   
+             self.positions[i] = int(self.positions[i][:-1])
+         self.positions[-1] = int(self.positions[-1])
+	 
+	 self.position_value = []
+         for i in range(len(self.positions)):
+              position = self.positions[i]
+              self.position_value[i] = 1000 / position # for each position, set a value to represents the size of each investment
+          
+      def simulate_outcome(self):
+      '''this is to simulate the outcome of one day of investment'''
+	  probability = 0.51
+ 	  cumu_ret = []
+          for i in range(len(self.position_value)):
+              cumu_ret[i] = 2 * self.positions[i] * np.random.binomial(self.position_value[i], probability, 1)
+              print "If you invest your $1000 in the instrument of $" + position[i] + ", you may get the return of $" + cumu_ret[trial] + " for one day."
+
+      def repeat(self):
+      '''this is to repeat the investment certain times'''  
+	  daily_ret = []  
+	  # accept the number of trials input from the user
+          num_trials = raw_input("how many times to randomly repeat the test? (example: 10,000)")
+          num_trials = int(num_trials)
+	  cumu_ret = np.zeros((len(self.positions), num_trials))
+	  daily_ret = np.zeros((len(self.positions), num_trials))
+	  for i in range(len(self.positions)):
+	      for trial in num_trials:
+              	  cumu_ret[i, trial] = 2 * self.positions[i] * np.random.binomial(self.position_value[i], probability, 1)
+                  daily_ret[i, trial] = (cumu_ret[i, trial] / 1000) - 1
+          
+
+      def present_results(self):
+          ''' this is to generate output of the plots, mean and standard deviation for each postion.'''
+          output_file = open('results.txt', 'w')
+          for i in range(len(self.positions)):
+	      # present the plots
+	      plt.figure()
+	      plt.title('Results of invest $1000 in instrument of $' + str(self.position[i])
+	      plt.hist(daily_ret[i, :], 100, range = [-1, 1])
+	      plt.xlable('Daily return')
+  	      plt.ylable('Frequency')
+	      plt.gcf()
+	      plot_filename = 'histogram plot results of $' + str(self.postion[i]) + '_pos.pdf'
+	      plt.savefig(plot_filename)
+	     
+	      # present the mean and standard deviation
+              means = np.mean(daily_ret[i, :])  # calculate the expected value of the daily return
+              stds = np.std(daily_ret[i, :])  # calculate the standard deviation of the daily return
+	      output_file.write("Position: " + str(self.positions[i]) + " mean: " + str(means) + " standard deviation: " + str(stds) + '\n')
+          output_file.close()
+              
+	  
+
+
+ 
+      
+
+     
+
+
